@@ -1,0 +1,56 @@
+<h1>Listing players</h1>
+
+<table>
+  <thead>
+  <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+
+<table style="width:80%" table align="center">
+  <tr>
+    <td><i><b>Name</td></b></i>
+    <td><i><b>Email</td></b></i>		
+    <td><i><b>Image</td></b></i>
+	<td><i><b>Gender </td></b></i>
+	<td><i><b>Age Group </td></b></i>
+	<td><i><b>Dob</td></b></i>
+    <td><i><b>Sport1</td></b></i>
+    <td><i><b>Sport2</td></b></i>
+	<td><i><b>Coach name </td></b></i>
+	<td><i><b>Show</td></b></i>
+	<td><i><b>Edit</td></b></i>
+	<td><i><b>Destroy</td></b></i>
+  </tr>
+  
+
+  
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.email %></td>
+        <td><%= player.image %></td>
+        <td><%= player.gender %></td>
+		 <td><%= player.agegroup %></td>
+        <td><%= player.dob %></td>
+        <td><%= player.sport1_id %></td>
+        <td><%= player.sport2_id %></td>
+		<td><%= player.coach.name%></td>
+		
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+	<tr>
+	<td><u><b><i><%= link_to 'New Player', new_player_path %></td></tr></b></i></u>
+  </tbody>
+</table>
+
+<br>
+
+

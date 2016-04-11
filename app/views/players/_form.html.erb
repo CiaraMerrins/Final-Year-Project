@@ -1,0 +1,99 @@
+<%= form_for(@player) do |f| %>
+  <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% @player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+   
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  
+  
+  <div class="field">
+<%= f.label :gender %><br />
+<%= f.label :gender, "Male", :value => "true"  %>
+<%= f.radio_button :gender, 'M' %>
+<%= f.label :gender, "Female", :value => "false" %>
+<%= f.radio_button :gender, 'F' %> 
+ </div>
+ 
+<div class="field">
+<%= f.label :agegroup %><br />
+<%= f.label :agegroup, "U.6", :value => "true"  %>
+<%= f.radio_button :agegroup, 'U.6' %>
+<%= f.label :agegroup, "U.8", :value => "false" %>
+<%= f.radio_button :agegroup, 'U.8' %>
+<%= f.label :agegroup, "U.10", :value => "false" %>
+<%= f.radio_button :agegroup, 'U.10' %>
+<%= f.label :agegroup, "U.12", :value => "false" %>
+ <%= f.radio_button :agegroup, 'U.12' %>
+<%= f.label :agegroup, "U.14", :value => "false" %>
+ <%= f.radio_button :agegroup, 'U.14' %>
+<%= f.label :agegroup, "U.16", :value => "false" %>
+<%= f.radio_button :agegroup, 'U.16' %>
+<%= f.label :agegroup, "Minor", :value => "false" %>
+<%= f.radio_button :agegroup, 'Minor' %>
+<%= f.label :agegroup, "U.21", :value => "false" %>
+<%= f.radio_button :agegroup, 'U.21' %>
+<%= f.label :agegroup, "Senior", :value => "false" %>
+ <%= f.radio_button :agegroup, 'Senior' %>
+ </div>
+ 
+ 
+  <div class="field">
+    <%= f.label :dob %><br>
+    <%= f.date_field :dob %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br><p>(inches)</p>
+    <%= f.number_field :height %>
+	
+  </div>
+  
+  <div class="field">
+    <%= f.label :weight %><br><p>(pounds)</p>
+    <%= f.number_field :weight %>
+  </div>
+    <div class="field">
+    <%= f.label :sport1 %><br>
+    <%= f.collection_select :sport1_id, Sport.all, :id, :name %> 
+  </div>
+  <div class="field">
+    <%= f.label :sport2 %><br>
+    <%= f.collection_select :sport2_id, Sport.all, :id, :name %> 
+  </div>
+  
+  <div class="field">
+    <%= f.label :coach_id %><br>
+    <%= f.collection_select :coach_id, Coach.all, :id, :name %> 
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

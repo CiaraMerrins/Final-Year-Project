@@ -1,0 +1,58 @@
+
+<h1>These are the diary entries for your players<h2>
+
+
+
+
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+
+
+
+<table border="1" style="width:100%" table align="center">
+
+  
+<% @players.each do |p| %>
+	
+	<% p.posts.each do |post| %>
+
+	<table border="1" style="width:100%" table align="center">
+   
+   
+		<div class="panel-body">
+		<tr> 
+		<td><%= post.title %></td>
+		</tr>
+		<tr>
+		<td><%= post.body %><br \></td>
+		</tr>
+		<tr>
+		<td>Entered <b><i><%= time_ago_in_words(post.created_at) %></b></i> ago by
+			<b><i><%= post.player.name %></p></td></b></i>
+		</tr>
+		</table>
+			 
+
+<table>
+		<tr><td><%= form_for([post, Comment.new]) do |f| %>		</tr></td>	
+						
+				<tr><td><%= f.text_field :body %></tr></td>	
+				<div class="actions">
+					<tr><td><%= f.submit "Comment on the Diary Entry"%></tr></td>
+				</div>
+			<% end %>
+</div>
+</body>
+</table>
+	
+
+
+	<% end %>
+<% end %>
+

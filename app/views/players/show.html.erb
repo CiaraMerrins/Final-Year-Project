@@ -1,0 +1,81 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<table width="100%" border="0">
+  <tr>
+    <td colspan="2" bgcolor="#A9A9A9">
+      <h1><div align="center">Hello <i><%= @player.name %></i></h1></div>
+	  
+    </td>
+  </tr>
+  
+  <tr valign="top">
+    <td bgcolor="#DCDCDC" width="30">
+      <b>Image</b><br />
+		
+		<%= image_tag("chris.jpg") %>
+	</td>
+
+	<td bgcolor="#eee" width="100" height="200">
+		<strong>Name:</strong>
+        <%= @player.name %>
+		<br>
+		<br>
+		<strong>Age:</strong>
+		<%= @player.dob %>
+		<br>
+		<br>
+		<strong>Email:</strong>
+		<%= @player.email %>
+		<br>
+		<br>
+		<strong>Gender:</strong>
+		<%= @player.gender %>
+		
+		<br>
+		<br>
+		<strong>Height(inches):</strong>
+		<%= @player.height %>
+		
+		<br>
+		<br>
+		<strong>Weight (pounds):</strong>
+		<%= @player.weight %>
+		
+		<br>
+		<br>
+		<strong>BMI (Calculated):</strong>
+		 <%= number_with_precision(@player.bmi, precision: 2) %>
+		 
+		 <br>
+		<br>
+		<strong>Agegroup:</strong>
+		<%= @player.agegroup %>
+		
+		<br>
+		<br>
+		<strong>Coach's Name:</strong>
+		<%= @player.coach.name %>
+		
+		<br>
+		<br>
+		<strong>Sport 1:</strong>
+		<%= @player.sport1_id %>
+		
+		<br>
+		<br>
+		<strong>Sport 2:</strong>
+		<%= @player.sport2_id %>
+    </td>
+  </tr>
+
+
+<tr><td><%= link_to 'Edit Profile', edit_player_path(@player) %></td> <td>
+<%= link_to 'Back', players_path %></td></tr>
+</table>
+
