@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
 	if player && player.authenticate(params[:password])
 	
 		session[:player_id] = player.id
-		redirect_to player
+		
+		  url = session[:return_to] || root_path
+  session[:return_to] = nil
+  url = root_path if url.eql?('/logout')
+  logger.debug "URL to redirect to: #{url}"
+  redirect_to(url)
 		
 	else
 	
@@ -37,7 +42,7 @@ class SessionsController < ApplicationController
 	coach = Coach.find_by_name(params[:name])
 	if coach && coach.authenticate(params[:password])
 		session[:coach_id] = coach.id
-		redirect_to playerdiary_path
+		redirect_to coach
 	else
 		flash.now[:error]= "Invalid name/password combination"
 		render 'coachnew'

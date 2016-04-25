@@ -1,23 +1,48 @@
 Rails.application.routes.draw do
  
 
+  resources :titles
+
+  resources :schedules
+
   root 'pages#home'
   
   resources :coaches
 
   resources :players
-
+  resources :sections
+  resources :titles
   resources :sports
-  resources :pins
+  
+
+  resources :pins do
+  member do
+    put "like", to: "pins#upvote"
+    put "dislike", to: "pins#downvote"
+	end
+	end
   resources :comments
   resources :posts do
 	resources :comments
   end
+  get '/FootballSkills', :to => 'pages#FootballSkills'
+  get '/HurlingSkills', :to => 'pages#HurlingSkills'
+   get '/GainingPosession', :to => 'pages#GainingPosession'
+     get '/Tackling', :to => 'pages#Tackling'
+	   get '/Scoring1', :to => 'pages#Scoring1'
+	   get '/ScoringH', :to => 'pages#ScoringH'
+	   get '/GainingPosessionH', :to => 'pages#GainingPosessionH'
+	   get '/TacklingH', :to => 'pages#TacklingH'
+  get 'oneplayerdiary', :to => 'players#oneplayer'
   
+  get 'onesection', :to => 'players#onesection'
   get 'playerdiary', :to => 'coaches#playerdiary'
+
+  get 'coachesschedule', :to => 'players#coachesschedule'
   
 get 'bmichart', :to => 'bmichart#show'
 get 'players/:id' => 'players#show'
+#get 'search' => 'post#search'
   controller :sessions do
 	get '/playersignin', :to => 'sessions#playernew'
 	post '/playersignin', :to => 'sessions#playercreate'

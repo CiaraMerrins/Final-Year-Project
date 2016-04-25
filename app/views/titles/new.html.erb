@@ -1,0 +1,10 @@
+<h1>New Title</h1>
+<%= form_for :title, url:titles_path do |f| %>
+<p>
+<%= f.label :name %><br>
+<%= f.text_field :name %>
+</p>
+<p>
+<%= f.submit %>
+</p>
+<% end %>

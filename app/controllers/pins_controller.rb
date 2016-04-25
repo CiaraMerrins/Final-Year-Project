@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-before_action :find_pin, only: [:show, :edit, :update, :destroy]
+before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote]
 before_action :playerauthorise
 
 
@@ -8,13 +8,19 @@ def index
 end
 def show
 end
+
 def new
 @pin = Pin.new
 end
-def create
-@pin = Pin.new(pin_params)
+
+ def create
+@pin= Pin.new(pin_params)
+@pin.player_id = @current_player.id
+
 if @pin.save
-redirect_to @pin, notice: "Successfully created new pin"
+	
+redirect_to @pin
+
 else
 render 'new'
 end
@@ -35,6 +41,52 @@ def destroy
 @pin.destroy
 redirect_to root_path
 end
+
+#def upvote
+#@pin.upvote_by @current_player
+#redirect_to :back
+#end
+
+#def upvote
+ # @pin = Pin.find(params[:id])
+  #if @current_player.voted_for? @pin
+   # redirect_to pins_path
+  #else
+   # @pin.upvote_by @current_player
+    #@pin.player.increase_karma
+   # redirect_to pins_path
+  #end
+#end
+
+
+
+def upvote
+  @pin = Pin.find(params[:id])
+  @pin.upvote_by @current_player
+ redirect_to pins_path
+end
+
+#def upvote
+#@pin.upvote_by @current_player
+#redirect_to :back
+#end
+def downvote
+  @pin = Pin.find(params[:id])
+  @pin.downvote_by @current_player
+ redirect_to pins_path
+end
+
+#def downvote
+ # @pin = Pin.find(params[:id])
+  #if @current_player.voted_for? @pin
+   # redirect_to pins_path
+  #else
+   # @pin.downvote_by @current_player
+    #@pin.player.decrease_karma
+    #redirect_to root_path
+  #end
+#end
+
 
 private
 def pin_params

@@ -47,8 +47,19 @@ def destroy
 
 redirect_to root_path
 end
+
+#def search
+#	@posts = Post.search params[:query]
+#	unless @pins.empty?
+#		render 'index'
+	#else
+	#	flash [:notice] = 'No record match'
+	#	render 'index'
+#	end
+#end
+
 private
 def post_params
-params.require(:post).permit(:title, :body)
+params.require(:post).permit(:title, :body, :title_id)
 end
 end

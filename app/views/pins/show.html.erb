@@ -7,8 +7,19 @@
 <h1><%= @pin.title %></h1>
 
 <p><%= @pin.desciption %></br></p>
+<p>Posted by: <%= @pin.player.name %></p>
+
+
+<% if playersigned_in? %>
+<div class="btn-group-vertical pull-right">
+<%= link_to like_pin_path(@pin), method: :put, class:"btn btn-default" do %>
+<span class="glyphicon glyphicon-heart"></span>
+
+<% end %>
+
 
 <%= link_to 'Edit', edit_pin_path(@pin),class: "btn btn-default" %>
 <%= link_to "Back", root_path, class: "btn btn-default" %>
 
-<%= link_to 'Delete', pin_path(@pin), method: :delete, data: {confirm: 'Are you sure?'} , class: "btn btn-default" %>
+<%= link_to 'Delete', pin_path(@pin), method: :delete, data: {confirm: 'Are you sure?'} , class: "btn btn-success" %>
+<% end %>

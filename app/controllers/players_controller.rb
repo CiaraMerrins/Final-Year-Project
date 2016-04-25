@@ -1,15 +1,72 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
-
+before_action :playerauthorise, only: [:coachesschedule, :onesection]
   # GET /players
   # GET /players.json
   def index
     @players = Player.all
   end
-
+  def coachesschedule
+@coach = @current_player.coach
+	
+	@sections = Section.all
+	
+  end
+  
+    def onesection
+	@section = Section.find(params[:section_id])
+	
+	@schedules = @section.schedules
+	@ccschedules = Array.new
+	@schedules.each do |s|		
+		if s.coach.id == @current_player.coach.id
+			@ccschedules << s
+		end
+	end
+	@ccschedules
+  end
+  
+  def oneplayer
+	@player = Player.find(params[:player_id])
+	@posts = @player.posts('created_at DESC')
+  end
+  
   # GET /players/1
   # GET /players/1.json
   def show
+  #@player = Player.find(params[:id])
+	if @player.bmi < 15
+		@success = "* Very Severely Underweight *"
+		
+		elsif
+		@player.bmi >= 15 && @player.bmi <16
+		@success = "* Severely Underweight* "
+		
+		elsif
+		@player.bmi >= 16 && @player.bmi <18.5
+		@success = "* Underweight* "
+		
+		elsif
+		@player.bmi >= 18.5 && @player.bmi <25
+		@success = "* Normal (healthy weight)* "
+		
+		elsif
+		@player.bmi >= 25 && @player.bmi <30
+		@success =  "* Overweight* "
+		
+		elsif
+		@player.bmi >= 30 && @player.bmi <35
+		@success = "* Obese (Moderately)* "
+		
+		elsif
+		@player.bmi >= 35 && @player.bmi <40
+		@success = "* Obese (Severely)* "
+		
+		elsif
+		@player.bmi >= 40
+		@success = "* Obese (Very severely)* "
+		
+		end
   end
 
   # GET /players/new

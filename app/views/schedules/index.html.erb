@@ -1,0 +1,14 @@
+<h2><i>Schedules </h2></i>
+<div class="col-md-6 col-md-offset-4">
+<div id="posts" class="transitions-enabled">
+
+<b><%= link_to 'Create new Schedule', new_schedule_path , class: "btn btn-success" %></b>
+<% @schedules.each do |schedule| %>
+<div class="box panel panel-default">
+<div class="post_wrapper">
+<li><h3><%= link_to schedule.section.name, schedule %></h3></li>
+<p class="title"><%= link_to schedule.description, schedule %>
+</p>
+<p class="date"><%= schedule.created_at.strftime("%B, %d, %Y") %></p>
+</div>
+</div><% end %>

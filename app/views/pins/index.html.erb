@@ -1,11 +1,33 @@
-<%= link_to 'Create new Pin', new_pin_path , class: "btn btn-default" %>
-<div class="col-md-6 col-md-offset-2">
-<div id="pins" class="transitions-enabled">	
-	<% @pins.each do |pin| %>
+<h1><b><i>Instagram</h1></b></i>
+
+
+ <%= link_to 'Create new Instagram Post', new_pin_path , class: "btn btn-success" %>
+<br>
+<br>
+<br>
+<br>
+		<div class="col-md-6 col-md-offset-2">
+		<div id="pins" class="transitions-enabled">
 		<div class="box panel panel-default">
-			<h2 class="image_file_name"><%= link_to pin.image_file_name, pin %></h2>
-			<h1 class="title"><%= link_to pin.title, pin %></h1>
+		
+	<% @pins.each do |pin| %>
+	
 			<%= image_tag pin.image_file_name %>
+			<br>
+			<%= link_to pin.desciption, pin %><br>
+			Posted by: <%= link_to pin.player.name, pin %>
+			(<%= link_to pin.player.agegroup, pin %>)
 			<p class="date"><%= pin.created_at.strftime("%B, %d, %Y") %></p>
+			<%= link_to(image_tag("like.png"), like_pin_path(pin), method: :put) %>
+			<%= link_to(image_tag("dislike.jpe"), dislike_pin_path(pin), method: :put) %>
+			  <%= pin.score %> Likes
+			|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+			<br><br>
+	
+	<% end %>
+	
+	</div>
+
+	</div>
+	<br><br>
 </div>
-<% end %>

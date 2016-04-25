@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+li {
+    text-indent: 5px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+</head>
+
 
 <title>GAA Webapp</title>
   <meta charset="utf-8">
@@ -23,39 +47,75 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+	  
+    <li class="active"><h2><%= link_to image_tag("nurney.jpe", :title=>"Home", :alt => "rss feed"), root_path %>
+
+	</h2></li>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to "Home", root_path %></li>
+        
+	
+		 <li><%= link_to "    " %></li>
+		<li><div class="dropdown">
+  <span><h3><%= link_to "Coach Menu", @current_coach %></span></h3>
+  <div class="dropdown-content">
+    <p><%= link_to "New Coach?", new_coach_path %></p>
+	<p><%= link_to "Coach Sign In", coachsignin_path %></p>
+	<p><%= link_to "View profile(c)", @current_coach %></p>
+	<p><%= link_to "Schedules", schedules_path %></p>
+	<p><%= link_to "Player Diaries", playerdiary_path %></p>
+  </div>
+</div></li>
+
+<li><%= link_to "    " %></li>
+<li><div class="dropdown">
+  <span><h3><%= link_to "Player Menu", @current_player %></span></h3>
+  <div class="dropdown-content">
+    <p><%= link_to "New Player?", new_player_path %></p>
+	<p><%= link_to "Player Sign In", playersignin_path %></p>
+	<p><%= link_to "View profile(p)", @current_player %></p>
+	<p><%= link_to "Personal Diary", posts_path %></p>
+	<p><%= link_to "Instagram", pins_path %></p>
+	<p><%= link_to "Schedules", coachesschedule_path %></p>
+	<p><a href="http://localhost:3000/FootballSkills">Football Skills</p>
+	<p><a href="http://localhost:3000/HurlingSkills">Hurling Skills</p>
+	<p><%= link_to "BMI Guideline", bmichart_path %></p>
+	<p><%= link_to "Group Chat(live)", pins_path %></p>
+  </div>
+</div></li>
+<li><%= link_to "    " %></li><li><%= link_to "    " %>
+		<li><h1><font size="60" color="Green" face="algerian">Nurney GAA </h1></li></font>
+
+	<li><%= link_to "    " %></li><li><%= link_to "    " %></li><li><%= link_to "    " %></li><li><%= link_to "    " %></li>
+	<li><%= link_to "    " %></li><li><%= link_to "    " %>
+	
+	
+
+	
 		
-		<li><%= link_to "Coach Sign Up", new_coach_path %></li>
-		<li><%= link_to "Player Sign Up", new_player_path %></li>
-		<li><%= link_to "View profile (p)", @current_player %></li>
-		<li><%= link_to "View profile(c)", @current_coach %></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Group Chat</a></li>
-        <li><%= link_to "Diary", posts_path %></li>
-		 <li><%= link_to "BMI Guideline", bmichart_path %></li>
-		 <li><%= link_to "Instagram", pins_path %></li>
-		 
-		 
 		 
       
 	  <% if !coachsigned_in? %>
 	  
         <li><%= link_to "Coach Sign in", coachsignin_path %></li>
+		
 	  <% else %>
-		<li><%= link_to "Coach Sign out", coachsignout_path %></li>
+		<li><b><i>C: <%= link_to @current_coach.name, coachsignout_path, :title=>"Logout" %></li></b></i>
+		
 	  <% end %>
+	 
 	  <% if !playersigned_in? %>
 		 <li><%= link_to "Player Sign in", playersignin_path %></li>
 	  <% else %>
-		  <li><%= link_to "Player Sign out", playersignout_path %></li>
+		  <li><b><i>P: <%= link_to @current_player.name, playersignout_path, :title=>"Logout" %></li></b></i>
+		
 	  <% end %>	  
-      
+
+
+     
 	  </ul>
-   
+   <h2><%= link_to image_tag("nurney.jpe", :title=>"Home", :alt => "rss feed"), root_path %>
   </div>
 </nav>
   

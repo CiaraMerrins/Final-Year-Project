@@ -1,0 +1,68 @@
+<h2><i><div align="center">Schedule Entries <h2></div></i>
+
+
+
+
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="alert alert-info" id="myAlert">
+    <a href="#" class="close">&times;</a>
+    <strong>Schedule entries
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#myAlert").alert("close");
+    });
+   
+});
+</script>
+
+
+	<table border="1" style="width:100%" table align="center">
+
+  
+
+	
+	<% @ccschedules.each do |schedule| %>
+
+	<table border="1" style="width:27%">
+   
+   
+		<div class="panel-body">
+		<li></li>
+		<tr> 
+		<td><%= schedule.description %></td>
+		</tr>
+		<% if schedule.image.present? %>
+		<tr>
+		
+		<%= image_tag schedule.image.thumb.url, :height=>"300" %>
+		</tr>
+		<% end %>
+		
+		</table>
+		<p>Submitted <b><i><%= time_ago_in_words(schedule.created_at) %></b></i> ago by
+			<b><i><%= schedule.coach.name %></p></b></i>
+	<% end %>		 
+
+
+</div>
+</body>
+</table>
+	<p><%= link_to "Back to Schedules (Sections)", coachesschedule_path %></p>

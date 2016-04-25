@@ -1,3 +1,8 @@
+
+
+
+
+
 <%= form_for(@player) do |f| %>
   <% if @player.errors.any? %>
     <div id="error_explanation">
@@ -12,88 +17,77 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %> :
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
+    <%= f.label :email %> :
     <%= f.text_field :email %>
   </div>
    
-  <div class="field">
+ 
+  
+   <div class="field">
     <%= f.label :image %><br>
-    <%= f.text_field :image %>
+    <%= f.file_field :image %>
+	 <% if f.object.image? %>
+      <%= image_tag f.object.image.thumb.url %>
+      <%= f.label :remove_image %>
+      <%= f.check_box :remove_image %> 
+    <% end %>
   </div>
-  
-  
+  <div cla
   <div class="field">
-<%= f.label :gender %><br />
+<%= f.label :gender %> :
 <%= f.label :gender, "Male", :value => "true"  %>
 <%= f.radio_button :gender, 'M' %>
 <%= f.label :gender, "Female", :value => "false" %>
 <%= f.radio_button :gender, 'F' %> 
  </div>
  
-<div class="field">
-<%= f.label :agegroup %><br />
-<%= f.label :agegroup, "U.6", :value => "true"  %>
-<%= f.radio_button :agegroup, 'U.6' %>
-<%= f.label :agegroup, "U.8", :value => "false" %>
-<%= f.radio_button :agegroup, 'U.8' %>
-<%= f.label :agegroup, "U.10", :value => "false" %>
-<%= f.radio_button :agegroup, 'U.10' %>
-<%= f.label :agegroup, "U.12", :value => "false" %>
- <%= f.radio_button :agegroup, 'U.12' %>
-<%= f.label :agegroup, "U.14", :value => "false" %>
- <%= f.radio_button :agegroup, 'U.14' %>
-<%= f.label :agegroup, "U.16", :value => "false" %>
-<%= f.radio_button :agegroup, 'U.16' %>
-<%= f.label :agegroup, "Minor", :value => "false" %>
-<%= f.radio_button :agegroup, 'Minor' %>
-<%= f.label :agegroup, "U.21", :value => "false" %>
-<%= f.radio_button :agegroup, 'U.21' %>
-<%= f.label :agegroup, "Senior", :value => "false" %>
- <%= f.radio_button :agegroup, 'Senior' %>
- </div>
+ <div class="field">
+    <%= f.label :coach_id, "Age Group" %> :
+    <%= f.collection_select :coach_id, Coach.all, :id, :agegroup %> 
+  </div>
+  
  
  
   <div class="field">
-    <%= f.label :dob %><br>
+    <%= f.label :dob %> :
     <%= f.date_field :dob %>
   </div>
   <div class="field">
-    <%= f.label :height %><br><p>(inches)</p>
+    <%= f.label :height %> (inches):
     <%= f.number_field :height %>
 	
   </div>
   
   <div class="field">
-    <%= f.label :weight %><br><p>(pounds)</p>
+    <%= f.label :weight %>(pounds) :
     <%= f.number_field :weight %>
   </div>
     <div class="field">
-    <%= f.label :sport1 %><br>
+    <%= f.label :sport1 %> :
     <%= f.collection_select :sport1_id, Sport.all, :id, :name %> 
   </div>
   <div class="field">
-    <%= f.label :sport2 %><br>
+    <%= f.label :sport2 %> :
     <%= f.collection_select :sport2_id, Sport.all, :id, :name %> 
   </div>
   
+ 
+  
   <div class="field">
-    <%= f.label :coach_id %><br>
-    <%= f.collection_select :coach_id, Coach.all, :id, :name %> 
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
+    <%= f.label :password %> :
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br>
+    <%= f.label :password_confirmation %> :
     <%= f.password_field :password_confirmation %>
   </div>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit your details", class: "btn btn-success" %>
   </div>
 <% end %>
+<p><b>Note: </b><i>GF = Gaelic Football (Male), LF = Ladies Football, H = Hurling, C = Camogie</i></p>

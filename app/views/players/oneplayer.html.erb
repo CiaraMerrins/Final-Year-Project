@@ -1,0 +1,29 @@
+	
+	<% @posts.each do |post| %>
+	<li><b><%= post.title.name %></b></li>
+	<table border="1" style="width:25%" >
+	<tr><td><%= post.body %></td></tr>
+	</table>
+<p>Entered <%= time_ago_in_words(post.created_at) %>
+	<%= post.player.name %></p>
+	
+<tr><td><%= form_for([post, Comment.new]) do |f| %>		</td></tr>
+<tr><td>		<%= f.text_area :body, :size=>"33", placeholder: "Post a comment ", :maxlength=>"230" %></td></tr>
+<br>
+<tr><td>		<%= f.submit "Comment", class: "btn btn-success"%></td></tr>
+
+	<% end %>
+	<br>
+<br>
+<% end %>
+
+
+
+	<%= link_to "Back to your players", playerdiary_path %>
+	
+	
+	
+	
+	
+	
+	

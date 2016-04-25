@@ -1,14 +1,20 @@
-
-<div class="col-md-6 col-md-offset-2">
+<div align="center"><h3><i>Your Diary Entry's </h3></i></div>
+<div align="left"><b><%= link_to 'Create new Diary Entry', new_post_path , class: "btn btn-success" %></b></div>
+<div class="col-md-6 col-md-offset-4">
 <div id="posts" class="transitions-enabled">
-<h1>List of all Diary Entry's </h2>
- <li><a href="http://localhost:3000/posts/new">Create new Diary Entry</a></li>
+
+
+
 <% @posts.each do |post| %>
 <div class="box panel panel-default">
 <div class="post_wrapper">
-<h2 class="title"><%= link_to post.title, post %>
+<h2 class="title"><%= link_to post.title.name, post %>
 </h2>
 <p class="date"><%= post.created_at.strftime("%B, %d, %Y") %></p>
 </div>
+
+</div>
+
+
 <% end %>
 

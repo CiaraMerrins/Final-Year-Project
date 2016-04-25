@@ -1,0 +1,25 @@
+<div align="center"><h3><i>Schedules posted by your Coach <b><%= @current_player.coach.name %></b></h3></i></div>
+
+
+
+
+<style>
+table, th, td {
+    border: 1px solid black;
+	border-collapse: seperate;
+	border-spacing: 6em 6em;
+	background-color: DarkGrey;
+	margin:30px;
+	
+}
+</style>
+</head>
+<body>
+
+<%@sections.each do |section| %>
+<table border="1" style="width:25%" table align="left" width="110" height="160">
+	<tr><td><h2><div align="center"><b><%= link_to section.name, onesection_path(section_id: section) %></td></tr></h2></tr></td></div></b>
+	
+<% end %>
+</table>
+</body>
